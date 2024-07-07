@@ -82,9 +82,8 @@ public class ProductAssertionTest {
     //20. Verify the prodctId = 346575 have 5 categories
     @Test
     public void test020() {
-        // response.body("data[9].categories.get", equalTo(5));
-        //response.body("data.findAll{it.id == '346575'}.categories.size()", equalTo(5));
-        response.body("data[9].categories[0]",hasKey("name"));
+        response.body("data.find{it.id ==346575}.categories.size()",equalTo(5));
+
     }
 
 

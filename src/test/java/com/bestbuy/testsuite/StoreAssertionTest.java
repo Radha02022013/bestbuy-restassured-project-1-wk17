@@ -2,13 +2,9 @@ package com.bestbuy.testsuite;
 
 import com.bestbuy.testbase.TestBase;
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
@@ -64,20 +60,22 @@ public class StoreAssertionTest extends TestBase {
     //6. Check hash map values ‘createdAt’ inside storeservices map where store name = Roseville
     @Test
     public void hashMapValues() {
-        Map<String, Object> qParams = new HashMap<>();
-        qParams.put("createdAt", "Roseville");
-        Response response = given()
-                .queryParams(qParams)
-                .when()
-                .get("/stores");
-        response.prettyPrint();
-        response.then().statusCode(200);
+//        Map<String, Object> qParams = new HashMap<>();
+//        qParams.put("createdAt", "Roseville");
+//        Response response = given()
+//                .queryParams(qParams)
+//                .when()
+//                .get("/stores");
+//        response.prettyPrint();
+//        response.then().statusCode(200);
+        response.body("data[2].name", equalTo("Roseville"));
+        response.body("data[2].createdAt", equalTo("2016-11-17T17:57:05.853Z"));
     }
 
     //7. Verify the state = MN of forth store
     @Test
     public void verifyState(){
-        response.body("data.state",hasItem("MN"));
+        response.body("data[3].state",equalTo("MN"));
     }
 
     //8. Verify the store name = Rochester of 9th store
