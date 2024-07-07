@@ -42,7 +42,7 @@ public class PropertyReader {
         Properties prop = new Properties();
         FileInputStream inputStream = null;
         try {
-            inputStream = new FileInputStream(System.getProperty("user.dir") + "/src/test/java/resources/propertiesfile/config.properties");
+            inputStream = new FileInputStream(System.getProperty("user.dir") + "/src/test/java/com/bestbuy/propertiesfile/config.properties");
             prop.load(inputStream);
             if (prop.getProperty(propertyName) != null) {
                 return prop.getProperty(propertyName);
