@@ -7,9 +7,8 @@ public class TestBase {
 
     @BeforeClass
     public static void inIt() {
-        RestAssured.baseURI = "http://localhost";
-        RestAssured.port = 3030;
-        RestAssured.basePath = "/stores";
+        RestAssured.baseURI = "https://gorest.co.in";
+        RestAssured.basePath = "/public/v2";
     }
     }
 

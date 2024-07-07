@@ -13,12 +13,12 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class StoresAssertionTest extends TestBase {
-  /*
-  http://localhost:3030/stores
-   */
+public class StoreAssertionTest extends TestBase {
 
-    static ValidatableResponse response;
+  /*
+    http://localhost:3030/stores
+     */
+  static ValidatableResponse response;
 
     @BeforeClass
     public static void inIt() {
@@ -50,19 +50,19 @@ public class StoresAssertionTest extends TestBase {
     }
 
     //4. Check the multiple ‘Names’ in the ArrayList (Roseville, Burnsville, Maplewood)
-@Test
-    public void multipleNames(){
-    response.body("data.name", hasItems("Roseville", "Burnsville", "Maplewood"));
-}
-
-//5. Verify the storied=7 inside storeservices of the third store of second services
     @Test
-    public void verifyStoried(){
+    public void multipleNames(){
+        response.body("data.name", hasItems("Roseville", "Burnsville", "Maplewood"));
+    }
+
+    //5. Verify the storeid=7 inside storeservices of the third store of second services
+    @Test
+    public void verifyStoreid(){
         response.body("data[2].services[1].storeservices.storeId", equalTo(7));
     }
 
     //6. Check hash map values ‘createdAt’ inside storeservices map where store name = Roseville
-@Test
+    @Test
     public void hashMapValues() {
         Map<String, Object> qParams = new HashMap<>();
         qParams.put("createdAt", "Roseville");
@@ -97,5 +97,6 @@ public class StoresAssertionTest extends TestBase {
     public void verifyServiceId(){
         response.body("data[6].services[3].id",equalTo(4));
     }
+
 }
 
